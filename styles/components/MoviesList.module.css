@@ -1,0 +1,15 @@
+.bgContainer {
+  background-color: #1E1E1E;
+}
+
+.movieComponentGrid {
+  height: 560px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+}
+
+.movieReleaseTag {
+  background-color: #FED530;
+  padding: 6px 13px;
+  border-radius: 16px;
+  font-size: 14px;
+}
