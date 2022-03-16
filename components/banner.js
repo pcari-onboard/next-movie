@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styles from '../styles/components/Banner.module.css'
-import { DatePicker } from 'react-rainbow-components'
+// import { DatePicker } from 'react-rainbow-components'
 import Button from 'components/button'
 
 export default function Banner({ homeMovies, findMovies, findTheaters }) {
