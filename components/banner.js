@@ -4,6 +4,7 @@ import { DatePicker } from 'react-rainbow-components'
 import Button from 'components/button'
 
 export default function Banner({ homeMovies, findMovies, findTheaters }) {
+  // const [date, setDate] = useState('')
   return (
     <section className={`${styles.bannerSection} py-36 lg:px-[103px]`}>
       <div className="flex items-center justify-items-stretch justify-between px-[111px]">
@@ -24,8 +25,8 @@ function HomeMovies() {
   )
 }
 
-function FindMovies() {
-  const [value, setValue] = useState('')
+function FindMovies({ dateValue, onChange}) {
+  // const [value, setValue] = useState('')
 
 
   return (
@@ -38,16 +39,13 @@ function FindMovies() {
             placeholder="Search by theatre...."
           />
         </div>
-        <DatePicker
+        {/* <DatePicker
           className={`text-white text-[21px] col-span-1 ml-2.5 ${styles.calendarStyle}`}
-          value={value}
-          onChange={(event) => {
-            setValue(event);
-            console.log(event)
-          }}
+          value={dateValue}
+          onChange={onChange}
           icon={<img src="images/calendar.svg" />}
           placeholder="Select a date"
-        />
+        /> */}
 
       </div>
       <Button onClick={() => console.log('boom')} className={'mt-[19px]'}>Search</Button>
