@@ -1,20 +1,22 @@
 import Link from 'next/link'
 import styles from 'styles/components/MoviesList.module.css'
 
-export default function MoviesList() {
+export default function MoviesList({ isSearchMovie, moviesList }) {
   return(
     <div className={`${styles.bgContainer} py-[133px] px-[103px]`}>
       <div className="flex justify-between items-center mb-[56px]">
+        {!isSearchMovie ?
         <h4 className="text-white text-[48px]">New Releases</h4>
-        <Link href="/movies/all-releases"><a className="text-[#FED530] text-[24px]">View More</a></Link>
+        : <h4 className="text-white text-[48px]">Search Results</h4>}
+        {!isSearchMovie && <Link href="/movies/all-releases"><a className="text-[#FED530] text-[24px] hover:underline">View More</a></Link>}
       </div>
       <div className={`movie-results__component`}>
         <div className="movie-release-container__component grid grid-cols-3 gap-4">
-          {[1,2,3,4,5].map((v, i) => (
+          {moviesList && moviesList.map((movie, i) => (
             <div key={i} className={`movie-release-grid__component relative ${i === 0 ? 'col-span-2' : ''} ${styles.movieComponentGrid}`}>
               <div className="">
                 <div className="mt-[26px] ml-[24px]">
-                  <span className={`${styles.movieReleaseTag}`}>Fantasy</span>
+                  <span className={`${styles.movieReleaseTag}`}>{movie.Genre}</span>
 
                 </div>
                 <div className="absolute bottom-0 ml-[24px] mb-[24px]">
@@ -27,7 +29,7 @@ export default function MoviesList() {
                     <span className="ml-[10px] text-[14px]">21.3K views</span>
                   </div>
                   <div className="movie-name text-white">
-                    <span className="text-[48px]">Interspace</span>
+                    <span className="text-[48px]">{movie.Title}</span>
                   </div>
                 </div>
               </div>

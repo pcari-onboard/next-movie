@@ -35,8 +35,10 @@ function FindMovies() {
       <div className="grid grid-cols-3">
         <div className="relative col-span-2">
           <img className="absolute left-[0.8rem] top-4" src="images/search-icon-black.svg" />
-          <input className="rounded-[192px] bg-white focus:outline-none hover:outline-none font-normal text-[#00000073] pr-4 pl-[3.05rem] h-full w-full"
+          <input
+          className="rounded-[192px] bg-white focus:outline-none hover:outline-none font-normal text-[#00000073] pr-4 pl-[3.05rem] h-full w-full"
             placeholder="Search by theatre...."
+            onBlur={(event) => console.log(event.target.value)}
           />
         </div>
         <div className="relative col-span-1">
