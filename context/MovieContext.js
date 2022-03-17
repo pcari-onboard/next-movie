@@ -43,6 +43,22 @@ export const MovieProvider = ({ children }) => {
     }
   }
 
+  const getMoviesByTimeSlot = async (theatreName, starDate, endDate) => {
+    try {
+      const resp = await axiosInstance.get(`/timeslot?theater_name=${theatreName}&time_start=${starDate}&time_end=${endDate}`);
+
+      dispatch({
+        type: SEARCH_MOVIES,
+        payload: {
+          movies: resp.data.data
+        }
+      })
+
+    } catch (err) {
+      throw new Error("getMoviesByTheatre", err);
+    }
+  }
+
   const resetMovies = () => {
     dispatch({
       type: RESET_MOVIES
@@ -53,6 +69,7 @@ export const MovieProvider = ({ children }) => {
     movies: state.movies,
     getMovies,
     getMoviesByTheatre,
+    getMoviesByTimeSlot,
     resetMovies
   }
 

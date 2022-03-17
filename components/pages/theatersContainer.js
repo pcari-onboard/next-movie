@@ -3,7 +3,7 @@ import MovieList from "components/moviesList"
 import useMovie from "context/MovieContext"
 import { useEffect } from "react"
 
-export default function MoviesContainer() {
+export default function TheatersContainer() {
   const { movies, getMovies, resetMovies } = useMovie()
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function MoviesContainer() {
 
   return(
     <>
-      <Banner findMovies/>
+      <Banner findTimeSlot/>
       {movies && <MovieList isSearchMovie moviesList={movies}/>}
     </>
 

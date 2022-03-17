@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import useMovie from 'context/MovieContext'
 import moment from 'moment'
 
-export default function Banner({ homeMovies, findMovies, findTheaters }) {
+export default function Banner({ homeMovies, findTimeSlot, findTheaters }) {
 
 
   return (
@@ -14,7 +14,7 @@ export default function Banner({ homeMovies, findMovies, findTheaters }) {
       <div className="flex items-center justify-items-stretch justify-between px-[111px]">
         <img src="images/play-button.png" />
         { homeMovies &&  <HomeMovies /> }
-        { findMovies &&  <FindMovies /> }
+        { findTimeSlot &&  <FindTimeSlot /> }
         { findTheaters &&  <FindTheaters /> }
       </div>
     </section>
@@ -23,15 +23,15 @@ export default function Banner({ homeMovies, findMovies, findTheaters }) {
 
 function HomeMovies() {
   return (
-    <div className="banner-section__text-block w-1/2 text-white">
+    <div className="banner-section__text-block w-3/5 text-white">
       <h3 className="text-7xl font-bold leading-tight">Find your movies here!</h3>
       <p className="text-base mt-6">Explore our gallery full of exciting films from all around the globe only your yor entertainments. No hidden charges or disturbing ads.</p>
     </div>
   )
 }
 
-function FindMovies() {
-  const { movies, getMoviesByTheatre, resetMovies } = useMovie()
+function FindTimeSlot() {
+  const { movies, getMoviesByTimeSlot, resetMovies } = useMovie()
   const [ startDate, setstartDate ] = useState(new Date())
   const [ endDate, setEndDate ] = useState(new Date())
   const [ searchTheatreName, setsearchTheatreName ] = useState('')
@@ -41,11 +41,15 @@ function FindMovies() {
       resetMovies()
     }
 
-    await getMoviesByTheatre(encodeURI(searchTheatreName.replace(" ", "%20")), moment(date).format('YYYY/MM/DD'))
+    await getMoviesByTimeSlot(
+      encodeURI(searchTheatreName.replaceAll(" ", "%20")),
+      moment(startDate).format('YYYY-MM-DD HH:mm:ss'),
+      moment(endDate).format('YYYY-MM-DD HH:mm:ss')
+    )
   }
 
   return (
-    <div className="banner-section__text-block w-1/2 text-white">
+    <div className="banner-section__text-block w-3/5 text-white">
       <h3 className="text-[48px] font-bold leading-tight mb-[19px]">Search your movies here!</h3>
       <div className="grid grid-cols-4 gap-4">
         <div className="relative col-span-4 h-[54px] mb-[12px]">
@@ -54,7 +58,6 @@ function FindMovies() {
           className="rounded-[192px] bg-white focus:outline-none hover:outline-none font-normal text-[#00000073] text-[21px] pr-4 pl-[3.05rem] h-full w-full"
             placeholder="Search by theatre...."
             onBlur={(value) => setsearchTheatreName(value.target.value)}
-            required="true"
           />
         </div>
         <div className="relative col-span-2">
@@ -62,7 +65,12 @@ function FindMovies() {
           <DatePicker
             className={'h-[54px] rounded-[192px] text-[#00000073] text-[21px] pl-[3.05rem] pr-[1rem] w-full focus:outline-none'}
             selected={startDate}
-            onChange={(event) => setstartDate(event)}
+            onChange={(event) => {
+              console.log("event", event)
+              setstartDate(event)
+            }}
+            showTimeInput
+            dateFormat="yyyy/mm/d - h:mm aa"
             placeholderText="Select A Start Date"
           />
         </div>
@@ -72,6 +80,8 @@ function FindMovies() {
             className={'h-[54px] rounded-[192px] text-[#00000073] text-[21px] pl-[3.05rem] pr-[1rem] w-full focus:outline-none'}
             selected={endDate}
             onChange={(event) => setEndDate(event)}
+            showTimeInput
+            dateFormat="yyyy/mm/d - h:mm aa"
             placeholderText="Select A End Date"
           />
         </div>
@@ -91,11 +101,11 @@ function FindTheaters() {
       resetMovies()
     }
 
-    await getMoviesByTheatre(encodeURI(searchTheatreName.replace(" ", "%20")), moment(date).format('YYYY/MM/DD'))
+    await getMoviesByTheatre(encodeURI(searchTheatreName.replaceAll(" ", "%20")), moment(date).format('YYYY/MM/DD'))
   }
 
   return (
-    <div className="banner-section__text-block w-1/2 text-white">
+    <div className="banner-section__text-block w-3/5 text-white">
       <h3 className="text-[48px] font-bold leading-tight mb-[19px]">Search your movies here!</h3>
       <div className="grid grid-cols-3">
         <div className="relative col-span-2">

@@ -1,10 +1,10 @@
-import Layout from '../../components/layout'
-import MoviesContainer from '../../components/pages/moviesContainer'
+import Layout from 'components/layout'
+import TimeSlotContainer from 'components/pages/theatersContainer'
 
 export default function Movies() {
   return (
     <Layout>
-      <MoviesContainer />
+      <TimeSlotContainer />
     </Layout>
   )
 }
