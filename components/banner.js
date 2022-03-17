@@ -111,7 +111,7 @@ function FindTheaters() {
         <div className="relative col-span-2">
           <img className="absolute left-[0.8rem] top-4" src="images/search-icon-black.svg" />
           <input
-          className="rounded-[192px] bg-white focus:outline-none hover:outline-none font-normal text-[#00000073] pr-4 pl-[3.05rem] h-full w-full"
+          className="rounded-[192px] bg-white focus:outline-none hover:outline-none font-normal text-[#00000073] text-[21px] pr-4 pl-[3.05rem] h-full w-full"
             placeholder="Search by theatre...."
             onBlur={(value) => setsearchTheatreName(value.target.value)}
             required="true"
@@ -120,7 +120,7 @@ function FindTheaters() {
         <div className="relative col-span-1">
           <img className="absolute top-4 left-5 z-10" src='images/calendar.svg' />
           <DatePicker
-            className={'h-[54px] rounded-[192px] text-[#00000073] pl-[3.05rem] pr-[1rem] ml-2.5 w-full'}
+            className={'h-[54px] rounded-[192px] text-[#00000073] text-[21px] pl-[3.05rem] pr-[1rem] ml-2.5 w-full'}
             selected={date}
             onChange={(event) => setDate(event)}
           />

@@ -14,7 +14,7 @@ export default function TheatersContainer() {
 
   return(
     <>
-      <Banner findTimeSlot/>
+      <Banner findTimeSlot />
       {movies && <MovieList isSearchMovie moviesList={movies}/>}
     </>
 
