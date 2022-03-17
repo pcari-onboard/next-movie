@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import styles from '../styles/components/Banner.module.css'
-// import { DatePicker } from 'react-rainbow-components'
 import Button from 'components/button'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 export default function Banner({ homeMovies, findMovies, findTheaters }) {
-  // const [date, setDate] = useState('')
   return (
     <section className={`${styles.bannerSection} py-36 lg:px-[103px]`}>
       <div className="flex items-center justify-items-stretch justify-between px-[111px]">
@@ -25,8 +25,8 @@ function HomeMovies() {
   )
 }
 
-function FindMovies({ dateValue, onChange}) {
-  // const [value, setValue] = useState('')
+function FindMovies() {
+  const [date, setDate] = useState(new Date())
 
 
   return (
@@ -39,14 +39,14 @@ function FindMovies({ dateValue, onChange}) {
             placeholder="Search by theatre...."
           />
         </div>
-        {/* <DatePicker
-          className={`text-white text-[21px] col-span-1 ml-2.5 ${styles.calendarStyle}`}
-          value={dateValue}
-          onChange={onChange}
-          icon={<img src="images/calendar.svg" />}
-          placeholder="Select a date"
-        /> */}
-
+        <div className="relative col-span-1">
+          <img className="absolute top-4 left-5 z-10" src='images/calendar.svg' />
+          <DatePicker
+            className={'h-[54px] rounded-[192px] text-[#00000073] pl-[3.05rem] pr-[1rem] ml-2.5 w-full'}
+            selected={date}
+            onChange={(event) => setDate(event)}
+          />
+        </div>
       </div>
       <Button onClick={() => console.log('boom')} className={'mt-[19px]'}>Search</Button>
     </div>
