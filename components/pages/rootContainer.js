@@ -4,10 +4,12 @@ import useMovie from "context/MovieContext"
 import { useEffect, useState } from "react"
 
 export default function Root() {
-  const { movies, getMovies } = useMovie()
+  const { movies, getMovies, resetMovies } = useMovie()
 
-  useEffect(async () => {
-    await getMovies();
+  useEffect(() => {
+    getMovies();
+
+    return resetMovies()
   },[])
 
   return (

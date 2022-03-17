@@ -3,8 +3,12 @@ import styles from '../styles/components/Banner.module.css'
 import Button from 'components/button'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import useMovie from 'context/MovieContext'
+import moment from 'moment'
 
 export default function Banner({ homeMovies, findMovies, findTheaters }) {
+
+
   return (
     <section className={`${styles.bannerSection} py-36 lg:px-[103px]`}>
       <div className="flex items-center justify-items-stretch justify-between px-[111px]">
@@ -26,8 +30,13 @@ function HomeMovies() {
 }
 
 function FindMovies() {
-  const [date, setDate] = useState(new Date())
+  const { getMoviesByTheatre } = useMovie()
+  const [ date, setDate ] = useState(new Date())
+  const [ searchTheatreName, setsearchTheatreName ] = useState('')
 
+  async function filterMoviesClick() {
+    await getMoviesByTheatre(searchTheatreName, moment(date).format('YYYY/MM/DD'))
+  }
 
   return (
     <div className="banner-section__text-block w-1/2 text-white">
@@ -38,7 +47,7 @@ function FindMovies() {
           <input
           className="rounded-[192px] bg-white focus:outline-none hover:outline-none font-normal text-[#00000073] pr-4 pl-[3.05rem] h-full w-full"
             placeholder="Search by theatre...."
-            onBlur={(event) => console.log(event.target.value)}
+            onBlur={(value) => setsearchTheatreName(value.target.value)}
           />
         </div>
         <div className="relative col-span-1">
@@ -50,7 +59,7 @@ function FindMovies() {
           />
         </div>
       </div>
-      <Button onClick={() => console.log('boom')} className={'mt-[19px]'}>Search</Button>
+      <Button onClick={filterMoviesClick} className={'mt-[19px]'}>Search</Button>
     </div>
   )
 }

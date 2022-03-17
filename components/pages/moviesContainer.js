@@ -4,16 +4,18 @@ import useMovie from "context/MovieContext"
 import { useEffect } from "react"
 
 export default function MoviesContainer() {
-  const {movies, getMovies} = useMovie()
+  const { movies, getMovies, resetMovies } = useMovie()
 
-  useEffect(async () => {
-    await getMovies();
+  useEffect(() => {
+    // getMovies();
+
+    return resetMovies()
   },[])
 
   return(
     <>
       <Banner findMovies/>
-      <MovieList isSearchMovie moviesList={movies}/>
+      {movies && <MovieList isSearchMovie moviesList={movies}/>}
     </>
 
   )
