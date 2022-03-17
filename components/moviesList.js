@@ -22,11 +22,11 @@ export default function MoviesList({ isSearchMovie, moviesList }) {
                 <div className="absolute bottom-0 ml-[24px] mb-[24px]">
                   <div className="time-taken text-white inline-block">
                     <img className="inline-block" src="images/clock.svg" />
-                    <span className="ml-[10px] text-[14px]">1hr 24mins</span>
+                    <span className="ml-[10px] text-[14px]">{movie.Duration}</span>
                   </div>
                   <div className="views text-white inline-block ml-[24px]">
                     <img className="inline-block" src="images/views.svg" />
-                    <span className="ml-[10px] text-[14px]">21.3K views</span>
+                    <span className="ml-[10px] text-[14px]">{movie.Views} views</span>
                   </div>
                   <div className="movie-name text-white">
                     <span className="text-[48px]">{movie.Title}</span>
